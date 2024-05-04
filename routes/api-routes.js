@@ -34,4 +34,18 @@ router.post("/api/notes", (req, res) => {
   writeJSONFile("db/db.json", dbJson);
   // Send the updated JSON data as response
   res.json(dbJson);
+
+  // DELETE request handler for '/api/notes/:id' endpoint
+router.delete('/api/notes/:id', (req, res) => {
+    // Read data from the JSON file
+    let dbJson = readJSONFile("db/db.json");
+    // Filter out the note with the specified ID
+    dbJson = dbJson.filter(note => note.id !== req.params.id);
+    // Write updated data back to the JSON file
+    writeJSONFile("db/db.json", dbJson);
+    // Send confirmation message as response
+    res.json("Note deleted.");
+  });
+  
+  module.exports = router;
 });
