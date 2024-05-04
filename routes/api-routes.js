@@ -11,4 +11,11 @@ function readJSONFile(filePath) {
 const writeJSONFile = (filePath, jsonData) => {
     fs.writeFile(filePath, JSON.stringify(jsonData));
   };
-
+// GET request handler for '/api/notes' endpoint
+router.get('/api/notes', (req, res) => {
+    // Read data from the JSON file
+    const dbJson = readJSONFile("db/db.json");
+    // Send the JSON data as response
+    res.json(dbJson);
+  });
+  
