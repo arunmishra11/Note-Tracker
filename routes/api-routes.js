@@ -4,7 +4,11 @@ const fs = require("fs");
 
 // Read JSON data from file
 function readJSONFile(filePath) {
-  const jsonData = fs.readFileSync(filePath, "utf8");
+  const jsonData = fs.readFile(filePath, "utf8");
   return JSON.parse(jsonData);
 }
+// Function to write JSON data to file
+const writeJSONFile = (filePath, jsonData) => {
+    fs.writeFile(filePath, JSON.stringify(jsonData));
+  };
 
